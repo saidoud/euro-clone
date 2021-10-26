@@ -1,6 +1,5 @@
 import React from "react";
-import { View, ImageBackground, Text } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { View, ImageBackground } from "react-native";
 
 import styles from "./styles";
 import background from "../../assets/field.jpg";
