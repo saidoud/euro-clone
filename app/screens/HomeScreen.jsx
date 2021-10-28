@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useMemo, useRef } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import BottomSheet from "@gorhom/bottom-sheet";
 
-import PlayerBottomSheet from "../components/PlayerBottomSheet";
 import Screen from "../components/ui/Screen";
 import Field from "../components/Field";
 import TeamStats from "../components/TeamStats";
@@ -10,10 +9,10 @@ import ButtonApp from "../components/ui/ButtonApp";
 
 function HomeScreen() {
   const refBottomSheet = useRef(null);
-  const snapPoints = ["1%", "90%"];
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
 
   const viewPlayer = () => {
-    console.log("Players");
+    refBottomSheet.current?.expand();
   };
   return (
     <Screen style={styles.container}>
@@ -24,11 +23,17 @@ function HomeScreen() {
           View Players
         </ButtonApp>
       </View>
-      <PlayerBottomSheet
-        index={1}
+      {/* Player Bottom Sheet*/}
+      <BottomSheet
         snapPoints={snapPoints}
+        index={-1}
         ref={refBottomSheet}
-      />
+        enablePanDownToClose
+      >
+        <View>
+          <Text>Awesome React Native Developer</Text>
+        </View>
+      </BottomSheet>
     </Screen>
   );
 }
